@@ -3,15 +3,15 @@
         <h1>Calcolatore subnet</h1>
         <form @submit.prevent="handleSubmit(ip, mask)">
             <div class="form-row">
-                <div class="form-group col-md-5 mb-3">
-                    <label for="ip">IP Address</label>
+                <div class="form-group col-md-5 mb-3 w-100">
+                    <label for="ip">Indirizzo IP</label>
                     <input class="form-control " type="text" name="ip" id="ip" v-model="ip" placeholder="Es. 192.168.1.1">
                 </div>
-                <div class="form-group col-md-5 mb-3">
+                <div class="form-group col-md-5 mb-3 w-100">
                     <label for="mask">Maschera</label>
                     <input class="form-control" type="number" name="mask" id="mask" v-model="mask" placeholder="Es. 27">
                 </div>
-                <input class="btn btn-primary" type="submit" value="Submit">
+                <input class="btn btn-primary me-2" type="submit" value="Invio">
                 <button v-if="submitted" type="button" class="btn btn-secondary" @click="toBinary()">{{ convert }}</button>
             </div>
         </form>
@@ -22,7 +22,7 @@
                 <p>{{ net }}</p>
                 <h3>Subnet</h3>
                 <p>{{ subnet }}</p>
-                <h3>ip broadcast</h3>
+                <h3>Ip broadcast</h3>
                 <p>{{ ip_broad }}</p>
                 <h3>Numero host</h3>
                 <p>{{ host_numb }}</p>
@@ -38,7 +38,7 @@
                 <p>{{ b_net }}</p>
                 <h3>Subnet</h3>
                 <p>{{ b_subnet }}</p>
-                <h3>ip broadcast</h3>
+                <h3>Ip broadcast</h3>
                 <p>{{ b_ip_broad }}</p>
                 <h3>Numero host</h3>
                 <p>{{ host_numb }}</p>
@@ -58,7 +58,7 @@ export default {
     name: 'App',
     data () {
         return {
-            convert: "To binary",
+            convert: "In binario",
             submitted: false,
             binary: false,
         
@@ -80,10 +80,10 @@ export default {
     methods: {
         toBinary() {
             if(!this.binary) {
-                this.convert = "To number";
+                this.convert = "In decimale";
                 this.binary = true;
             } else {
-                this.convert = "To binary";
+                this.convert = "In binario";
                 this.binary = false;
             }
         },
@@ -131,10 +131,26 @@ export default {
                 })
                 .catch(err => console.log(err))
             } else {
-                console.log("wrong ip");
+                alert("L'indirizzo IP o la maschera di sottorete inseriti sono sbagliati.");
             }
         }
     }
 }
 
 </script>
+
+<style>
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    display: table-cell;
+    vertical-align: middle;
+}
+</style>
